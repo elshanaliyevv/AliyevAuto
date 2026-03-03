@@ -1,4 +1,4 @@
-package com.elshanaliyev.aliyevauto.dto.response;
+package com.elshanaliyev.aliyevauto.dto.request;
 
 import com.elshanaliyev.aliyevauto.Enums.CarEnums.BmwEngines;
 import jakarta.validation.constraints.NotBlank;
@@ -6,17 +6,17 @@ import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDateTime;
 
-public class ServiceCarsResponse {
+public class ServiceCarsRegister {
     @NotBlank
     String name;
-    @NotBlank
+    @NotNull
     BmwEngines engines;
     @NotNull
     Integer kilometers;
+    @NotNull
     LocalDateTime productYear;
     @NotNull
     LocalDateTime purchasedYear;
     @NotNull
-    Long user_id;
-
+    Long userId;
 }

@@ -1,0 +1,10 @@
+package com.elshanaliyev.aliyevauto.repository;
+
+import com.elshanaliyev.aliyevauto.entity.LastServiceTime;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.Optional;
+
+public interface LastServiceTimeRepo extends JpaRepository<Long, LastServiceTime> {
+    Optional<LastServiceTime> findAllById(Long id);
+}

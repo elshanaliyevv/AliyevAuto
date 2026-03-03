@@ -1,7 +1,5 @@
 package com.elshanaliyev.aliyevauto.dto.response;
 
-import com.elshanaliyev.aliyevauto.entity.ServiceCars;
-import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.experimental.FieldDefaults;
@@ -10,7 +8,7 @@ import java.math.BigDecimal;
 
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class ServicePartsResponse {
+public class ServiceTimesResponse {
     Long id;
     Integer lastOilChangeKilometr;
     Integer lastAirFilterChangeKilometr;

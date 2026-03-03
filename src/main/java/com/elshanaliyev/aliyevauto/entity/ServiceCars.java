@@ -5,6 +5,8 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
 
@@ -17,6 +19,7 @@ public class ServiceCars {
     Long id;
     @NotBlank
     String name;
+    @Enumerated(EnumType.STRING)
     @NotBlank
     BmwEngines engines;
     @NotNull
@@ -26,9 +29,15 @@ public class ServiceCars {
     @NotNull
     @Column(name = "purchased_year")
     LocalDateTime purchasedYear;
+    @CreationTimestamp
+    @Column(name = "created_at")
+    LocalDateTime createdAt;
+    @UpdateTimestamp
+    @Column(name = "updated_at")
+    LocalDateTime updated_at;
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
     @OneToOne(mappedBy = "serviceCars")
-    ServiceParts serviceParts;
+    LastServiceTime lastServiceTime;
 }

@@ -4,14 +4,16 @@ import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.experimental.FieldDefaults;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
 @Table(name = "service_parts")
-public class ServiceParts {
+public class LastServiceTime {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
@@ -25,6 +27,9 @@ public class ServiceParts {
     BigDecimal serviceFee;
     @Column(name = "total_amount")// Xidmət haqqı
     BigDecimal totalAmount;
+    @UpdateTimestamp
+    @Column(name = "updated_at")
+    LocalDateTime updated_at;
     @OneToOne
     @JoinColumn(name = "car_id")
     ServiceCars serviceCars;

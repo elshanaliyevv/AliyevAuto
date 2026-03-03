@@ -25,12 +25,16 @@ public class NewCar {
     Long id;
     @NotBlank
     String Factory;
+    @Enumerated(EnumType.STRING)
     @NotBlank
     Model model;
+    @Enumerated(EnumType.STRING)
     @NotBlank
     BmwEngines engine;
+    @Enumerated(EnumType.STRING)
     @NotNull
     Trim trim;
+    @Enumerated(EnumType.STRING)
     @NotNull
     Color color;
     @NotNull
