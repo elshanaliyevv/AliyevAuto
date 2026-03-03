@@ -1,6 +1,4 @@
 package com.elshanaliyev.aliyevauto.repository;
-
-import com.elshanaliyev.aliyevauto.dto.response.UserResponse;
 import com.elshanaliyev.aliyevauto.entity.NewCar;
 import org.springframework.data.jpa.repository.JpaRepository;
 

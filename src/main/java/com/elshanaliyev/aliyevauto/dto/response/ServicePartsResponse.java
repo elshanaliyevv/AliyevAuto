@@ -1,0 +1,21 @@
+package com.elshanaliyev.aliyevauto.dto.response;
+
+import com.elshanaliyev.aliyevauto.entity.ServiceCars;
+import jakarta.persistence.*;
+import lombok.AccessLevel;
+import lombok.Data;
+import lombok.experimental.FieldDefaults;
+
+import java.math.BigDecimal;
+
+@Data
+@FieldDefaults(level = AccessLevel.PRIVATE)
+public class ServicePartsResponse {
+    Long id;
+    Integer lastOilChangeKilometr;
+    Integer lastAirFilterChangeKilometr;
+    Integer lastOilFilterChangeKilometr;
+    BigDecimal serviceFee;
+    BigDecimal totalAmount;
+    Long carId;
+}

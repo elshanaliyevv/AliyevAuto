@@ -1,4 +1,5 @@
-package com.elshanaliyev.aliyevauto.entity;
+package com.elshanaliyev.aliyevauto.dto.response;
+
 
 import com.elshanaliyev.aliyevauto.Enums.CarEnums.BmwEngines;
 import com.elshanaliyev.aliyevauto.Enums.CarEnums.Color;
@@ -10,19 +11,12 @@ import jakarta.validation.constraints.NotNull;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.experimental.FieldDefaults;
-import org.hibernate.annotations.UpdateTimestamp;
-
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
-@Entity
-@Table(name = "new_cars")
-public class NewCar {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+public class NewCarResponse {
     @NotBlank
     String Factory;
     @NotBlank
