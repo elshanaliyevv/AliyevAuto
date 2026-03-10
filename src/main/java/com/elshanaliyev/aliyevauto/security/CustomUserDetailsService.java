@@ -16,14 +16,17 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String identifier) throws UsernameNotFoundException {
+
         User user = userRepo
                 .findByUsernameOrEmailOrNumber(identifier, identifier, identifier)
-                .orElseThrow(() -> new UsernameNotFoundException("User tapılmadı: " + identifier));
+                .orElseThrow(() -> new UsernameNotFoundException("User tapılmadı"));
+
+        String role = user.getRole() == null ? "USER" : user.getRole().name();
 
         return org.springframework.security.core.userdetails.User
                 .withUsername(user.getUsername())
                 .password(user.getPassword())
-                .roles(user.getRole().name())
+                .roles(role)
                 .build();
     }
 }

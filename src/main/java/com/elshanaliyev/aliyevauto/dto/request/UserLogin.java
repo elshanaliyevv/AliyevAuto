@@ -15,7 +15,6 @@ public class UserLogin {
     String identifier;
     @NotBlank
     String password;
-    @NotBlank
     @Enumerated(EnumType.STRING)
     Roles role;
 }
