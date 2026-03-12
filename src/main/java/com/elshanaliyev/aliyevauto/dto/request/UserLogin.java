@@ -1,8 +1,5 @@
 package com.elshanaliyev.aliyevauto.dto.request;
 
-import com.elshanaliyev.aliyevauto.Enums.UserEnums.Roles;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AccessLevel;
 import lombok.Data;
@@ -15,6 +12,4 @@ public class UserLogin {
     String identifier;
     @NotBlank
     String password;
-    @Enumerated(EnumType.STRING)
-    Roles role;
 }
