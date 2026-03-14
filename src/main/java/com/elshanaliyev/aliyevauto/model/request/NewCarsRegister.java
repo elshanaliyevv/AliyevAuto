@@ -1,8 +1,5 @@
-package com.elshanaliyev.aliyevauto.dto.request;
+package com.elshanaliyev.aliyevauto.model.request;
 
-import com.elshanaliyev.aliyevauto.Enums.CarEnums.BmwEngines;
-import com.elshanaliyev.aliyevauto.Enums.CarEnums.Color;
-import com.elshanaliyev.aliyevauto.Enums.CarEnums.Model;
 import com.elshanaliyev.aliyevauto.Enums.CarEnums.Trim;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -15,16 +12,16 @@ public class NewCarsRegister {
     String factory;
 
     @NotNull(message = "Model seçilməlidir")
-    Model model;
+    String model;
 
     @NotNull(message = "Mühərrik tipi seçilməlidir")
-    BmwEngines engin;
+    String engine;
 
     @NotNull(message = "Trim (Komplektasiya) seçilməlidir")
     Trim trim;
 
     @NotNull(message = "Rəng seçilməlidir")
-    Color color;
+    String color;
 
     @NotNull(message = "İstehsal ili mütləqdir")
     LocalDateTime productYear;

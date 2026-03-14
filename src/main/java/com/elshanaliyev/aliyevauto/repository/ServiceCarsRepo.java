@@ -1,6 +1,6 @@
 package com.elshanaliyev.aliyevauto.repository;
 
-import com.elshanaliyev.aliyevauto.entity.ServiceCars;
+import com.elshanaliyev.aliyevauto.model.entity.ServiceCars;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

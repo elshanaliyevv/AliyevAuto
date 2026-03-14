@@ -1,4 +1,4 @@
-package com.elshanaliyev.aliyevauto.dto.request;
+package com.elshanaliyev.aliyevauto.model.request;
 
 import java.math.BigDecimal;
 

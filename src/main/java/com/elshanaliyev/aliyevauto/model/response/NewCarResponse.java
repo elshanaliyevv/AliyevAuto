@@ -1,42 +1,30 @@
-package com.elshanaliyev.aliyevauto.entity;
+package com.elshanaliyev.aliyevauto.model.response;
 
-import com.elshanaliyev.aliyevauto.Enums.CarEnums.BmwEngines;
-import com.elshanaliyev.aliyevauto.Enums.CarEnums.Color;
-import com.elshanaliyev.aliyevauto.Enums.CarEnums.Model;
+
 import com.elshanaliyev.aliyevauto.Enums.CarEnums.Trim;
+import com.elshanaliyev.aliyevauto.model.entity.Model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.experimental.FieldDefaults;
-import org.hibernate.annotations.UpdateTimestamp;
-
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
-@Entity
-@Table(name = "new_cars")
-public class NewCar {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+public class NewCarResponse {
     @NotBlank
     String Factory;
-    @Enumerated(EnumType.STRING)
     @NotBlank
-    Model model;
-    @Enumerated(EnumType.STRING)
+    String model;
     @NotBlank
-    BmwEngines engine;
-    @Enumerated(EnumType.STRING)
+    String engine;
     @NotNull
     Trim trim;
-    @Enumerated(EnumType.STRING)
     @NotNull
-    Color color;
+    String color;
     @NotNull
     @Column(name = "product_year")
     LocalDateTime productYear;

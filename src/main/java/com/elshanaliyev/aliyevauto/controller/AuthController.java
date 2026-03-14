@@ -1,10 +1,10 @@
 package com.elshanaliyev.aliyevauto.controller;
 
-import com.elshanaliyev.aliyevauto.dto.request.RefreshTokenRequest;
-import com.elshanaliyev.aliyevauto.dto.request.UserLogin;
-import com.elshanaliyev.aliyevauto.dto.request.UserRegister;
-import com.elshanaliyev.aliyevauto.dto.response.AuthResponse;
-import com.elshanaliyev.aliyevauto.dto.response.TokensResponse;
+import com.elshanaliyev.aliyevauto.model.request.RefreshTokenRequest;
+import com.elshanaliyev.aliyevauto.model.request.UserLogin;
+import com.elshanaliyev.aliyevauto.model.request.UserRegister;
+import com.elshanaliyev.aliyevauto.model.response.AuthResponse;
+import com.elshanaliyev.aliyevauto.model.response.TokensResponse;
 import com.elshanaliyev.aliyevauto.service.AuthService;
 import com.elshanaliyev.aliyevauto.service.JwtService;
 import jakarta.validation.Valid;

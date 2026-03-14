@@ -1,4 +1,4 @@
-package com.elshanaliyev.aliyevauto.dto.response;
+package com.elshanaliyev.aliyevauto.model.response;
 
 import lombok.AccessLevel;
 import lombok.Data;

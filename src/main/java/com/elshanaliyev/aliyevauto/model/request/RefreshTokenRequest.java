@@ -1,4 +1,4 @@
-package com.elshanaliyev.aliyevauto.dto.request;
+package com.elshanaliyev.aliyevauto.model.request;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.AccessLevel;
@@ -7,9 +7,8 @@ import lombok.experimental.FieldDefaults;
 
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class UserLogin {
+public class RefreshTokenRequest {
+
     @NotBlank
-    String identifier;
-    @NotBlank
-    String password;
+    String refreshToken;
 }

@@ -1,9 +1,5 @@
-package com.elshanaliyev.aliyevauto.dto.response;
+package com.elshanaliyev.aliyevauto.model.entity;
 
-
-import com.elshanaliyev.aliyevauto.Enums.CarEnums.BmwEngines;
-import com.elshanaliyev.aliyevauto.Enums.CarEnums.Color;
-import com.elshanaliyev.aliyevauto.Enums.CarEnums.Model;
 import com.elshanaliyev.aliyevauto.Enums.CarEnums.Trim;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
@@ -11,25 +7,38 @@ import jakarta.validation.constraints.NotNull;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.experimental.FieldDefaults;
+
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class NewCarResponse {
+@Entity
+@Table(name = "new_cars")
+public class NewCar {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    Long id;
     @NotBlank
     String Factory;
-    @NotBlank
-    Model model;
-    @NotBlank
-    BmwEngines engine;
+    @Enumerated(EnumType.STRING)
     @NotNull
     Trim trim;
     @NotNull
-    Color color;
-    @NotNull
     @Column(name = "product_year")
     LocalDateTime productYear;
+    @NotBlank
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "color_id")
+    Color color;
+    @NotBlank
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "engine_id")
+    Engine engine;
+    @NotBlank
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "model_id")
+    Model model;
     @NotNull
     BigDecimal price;
 }

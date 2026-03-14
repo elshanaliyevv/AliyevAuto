@@ -1,12 +1,12 @@
 package com.elshanaliyev.aliyevauto.service;
 
 import com.elshanaliyev.aliyevauto.Enums.UserEnums.Roles;
-import com.elshanaliyev.aliyevauto.dto.request.UserLogin;
-import com.elshanaliyev.aliyevauto.dto.request.UserRegister;
-import com.elshanaliyev.aliyevauto.dto.response.AuthResponse;
-import com.elshanaliyev.aliyevauto.dto.response.TokensResponse;
-import com.elshanaliyev.aliyevauto.dto.response.UserResponse;
-import com.elshanaliyev.aliyevauto.entity.User;
+import com.elshanaliyev.aliyevauto.model.request.UserLogin;
+import com.elshanaliyev.aliyevauto.model.request.UserRegister;
+import com.elshanaliyev.aliyevauto.model.response.AuthResponse;
+import com.elshanaliyev.aliyevauto.model.response.TokensResponse;
+import com.elshanaliyev.aliyevauto.model.response.UserResponse;
+import com.elshanaliyev.aliyevauto.model.entity.User;
 import com.elshanaliyev.aliyevauto.repository.UserRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;

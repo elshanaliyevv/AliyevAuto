@@ -1,6 +1,6 @@
 package com.elshanaliyev.aliyevauto.service;
 
-import com.elshanaliyev.aliyevauto.dto.response.TokensResponse;
+import com.elshanaliyev.aliyevauto.model.response.TokensResponse;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;

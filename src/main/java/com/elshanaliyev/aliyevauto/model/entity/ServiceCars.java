@@ -1,6 +1,5 @@
-package com.elshanaliyev.aliyevauto.entity;
+package com.elshanaliyev.aliyevauto.model.entity;
 
-import com.elshanaliyev.aliyevauto.Enums.CarEnums.BmwEngines;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -14,21 +13,27 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "service_cars")
 public class ServiceCars {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
     @NotBlank
     String name;
-    @Enumerated(EnumType.STRING)
     @NotBlank
-    BmwEngines engines;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "color_id")
+    Color color;
+    @NotBlank
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "engine_id")
+    Engine engine;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "model_id")
+    Model model;
     @NotNull
     Integer kilometers;
     @Column(name = "product_year")
     LocalDateTime productYear;
-    @NotNull
-    @Column(name = "purchased_year")
-    LocalDateTime purchasedYear;
     @CreationTimestamp
     @Column(name = "created_at")
     LocalDateTime createdAt;

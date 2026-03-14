@@ -1,6 +1,6 @@
 package com.elshanaliyev.aliyevauto.security;
 
-import com.elshanaliyev.aliyevauto.entity.User;
+import com.elshanaliyev.aliyevauto.model.entity.User;
 import com.elshanaliyev.aliyevauto.repository.UserRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;

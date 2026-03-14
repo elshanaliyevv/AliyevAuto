@@ -1,6 +1,6 @@
-package com.elshanaliyev.aliyevauto.dto.response;
+package com.elshanaliyev.aliyevauto.model.response;
 
-import com.elshanaliyev.aliyevauto.Enums.CarEnums.BmwEngines;
+import com.elshanaliyev.aliyevauto.model.entity.Engine;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
@@ -10,7 +10,7 @@ public class ServiceCarsResponse {
     @NotBlank
     String name;
     @NotBlank
-    BmwEngines engines;
+    String engine;
     @NotNull
     Integer kilometers;
     LocalDateTime productYear;

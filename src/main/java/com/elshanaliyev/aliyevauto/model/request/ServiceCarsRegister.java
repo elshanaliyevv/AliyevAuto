@@ -1,6 +1,5 @@
-package com.elshanaliyev.aliyevauto.dto.request;
+package com.elshanaliyev.aliyevauto.model.request;
 
-import com.elshanaliyev.aliyevauto.Enums.CarEnums.BmwEngines;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
@@ -10,7 +9,7 @@ public class ServiceCarsRegister {
     @NotBlank
     String name;
     @NotNull
-    BmwEngines engines;
+    String engine;
     @NotNull
     Integer kilometers;
     @NotNull

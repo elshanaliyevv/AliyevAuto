@@ -1,4 +1,4 @@
-package com.elshanaliyev.aliyevauto.entity;
+package com.elshanaliyev.aliyevauto.model.entity;
 
 import jakarta.persistence.*;
 import lombok.AccessLevel;
