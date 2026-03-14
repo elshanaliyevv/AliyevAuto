@@ -17,7 +17,7 @@ public class LastServiceTime {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
-    @Column(name = "last_oil_change_filter")
+    @Column(name = "last_filter_oil_change_filter")
     Integer lastOilChangeKilometr;
     @Column(name = "last_air_filter_change_kilometr")
     Integer lastAirFilterChangeKilometr;
