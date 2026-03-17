@@ -7,7 +7,7 @@ import jakarta.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-public class NewCarsRegister {
+public class NewCarsRequest {
     @NotBlank(message = "Zavod (Factory) qeyd olunmalıdır")
     String factory;
 

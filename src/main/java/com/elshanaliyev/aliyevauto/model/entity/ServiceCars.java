@@ -18,8 +18,6 @@ public class ServiceCars {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
     @NotBlank
-    String name;
-    @NotBlank
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "color_id")
     Color color;
@@ -31,7 +29,7 @@ public class ServiceCars {
     @JoinColumn(name = "model_id")
     Model model;
     @NotNull
-    Integer kilometers;
+    Long kilometers;
     @Column(name = "product_year")
     LocalDateTime productYear;
     @CreationTimestamp
@@ -44,5 +42,5 @@ public class ServiceCars {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
     @OneToOne(mappedBy = "serviceCars")
-    LastServiceTime lastServiceTime;
+    LastServiceTimes lastServiceTimes;
 }
