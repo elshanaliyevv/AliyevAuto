@@ -2,14 +2,15 @@ package com.elshanaliyev.aliyevauto.service;
 
 import com.elshanaliyev.aliyevauto.Exceptions.UserCantDeleted;
 import com.elshanaliyev.aliyevauto.Exceptions.UserNotFoundException;
+import com.elshanaliyev.aliyevauto.Exceptions.WrongNumberForm;
 import com.elshanaliyev.aliyevauto.mapper.EntityMapper;
 import com.elshanaliyev.aliyevauto.model.entity.User;
-import com.elshanaliyev.aliyevauto.model.response.ServiceCarsResponse;
 import com.elshanaliyev.aliyevauto.model.response.UserResponse;
 import com.elshanaliyev.aliyevauto.repository.UserRepo;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.experimental.FieldDefaults;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import java.util.Optional;
 
@@ -66,18 +67,45 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean updateUsername(Long id) {
-        return false;
+    public void updateMyUsername(String username) {
+        String currentUsername = SecurityContextHolder.getContext().getAuthentication().getName();
+
+        User user = userRepo.findByUsername(currentUsername)
+                .orElseThrow(() -> new UserNotFoundException("User not found"));
+
+        user.setUsername(username);
+        userRepo.save(user);
     }
 
     @Override
-    public boolean updateMail(Long id) {
-        return false;
+    public void updateMyNumber(String number) {
+        String regex = "^(?:\\+994|0)(?:10|50|51|55|60|70|77|99)\\d{7}$";
+        if (!number.matches(regex)){
+            throw new WrongNumberForm("Please enter avaible number");
+        }
+        String currentUsername = SecurityContextHolder.getContext().getAuthentication().getName();
+
+        User user = userRepo.findByUsername(currentUsername)
+                .orElseThrow(() -> new UserNotFoundException("User not found"));
+
+        user.setNumber(number);
+        userRepo.save(user);
     }
 
     @Override
-    public boolean updateNumber(String number) {
-        return false;
+    public void updateMyMail(String email) {
+        String currentUsername = SecurityContextHolder.getContext().getAuthentication().getName();
+
+        User user = userRepo.findByUsername(currentUsername)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        user.setEmail(email);
+        userRepo.save(user);
+    }
+
+
+    private String getCurrentUsername() {
+        return SecurityContextHolder.getContext().getAuthentication().getName();
     }
 
 

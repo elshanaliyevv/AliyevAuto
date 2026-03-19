@@ -3,7 +3,7 @@ package com.elshanaliyev.aliyevauto.controller;
 
 import com.elshanaliyev.aliyevauto.Exceptions.UserCantDeleted;
 import com.elshanaliyev.aliyevauto.Exceptions.UserNotFoundException;
-import com.elshanaliyev.aliyevauto.security.CustomUserDetails;
+import com.elshanaliyev.aliyevauto.Exceptions.WrongNumberForm;
 import com.elshanaliyev.aliyevauto.service.UserServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
 
     private final UserServiceImpl userService;
-    private final CustomUserDetails customUserDetails;
+
 
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/id/{id}")
@@ -61,5 +61,37 @@ public class UserController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("USer not found");
         }
     }
+    @PostMapping("/updateusername")
+    public ResponseEntity<?> updateUsername(@RequestParam String username) {
+        try {
+            userService.updateMyUsername(username);
+            return ResponseEntity.ok("Username changed");
+        } catch (UserNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("USer not found");
+        }
+    }
+
+    @PostMapping("/updatemail")
+    public ResponseEntity<?> updateMail(@RequestParam String mail) {
+        try {
+            userService.updateMyMail(mail);
+            return ResponseEntity.ok("Mail changed");
+        } catch (UserNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("USer not found");
+        }
+    }
+
+    @PostMapping("/updatenumber")
+    public ResponseEntity<?> updateNumber(@RequestParam String number) {
+        try {
+            userService.updateMyNumber(number);
+            return ResponseEntity.ok("Number changed");
+        } catch (UserNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("USer not found");
+        }catch (WrongNumberForm e){
+            return ResponseEntity.status(400).body("Please enter right number ");
+        }
+    }
+
 
 }

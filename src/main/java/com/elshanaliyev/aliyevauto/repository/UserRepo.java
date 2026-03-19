@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
 
-public interface UserRepo extends JpaRepository<User, Long> {
+public interface UserRepo extends JpaRepository<User,Long> {
     Optional<User> findByUsername(String username);
 
     Optional<User> findByEmail(String email);
@@ -23,7 +23,4 @@ public interface UserRepo extends JpaRepository<User, Long> {
     boolean existsByEmail(String email);
 
     boolean existsByNumber(String number);
-
-    @Transactional
-    boolean updateUsernameById(Long id, String Username);
 }
