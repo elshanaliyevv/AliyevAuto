@@ -15,4 +15,8 @@ public interface JwtService {
     boolean isValidRefresh(String token);
 
     TokensResponse refreshAccessToken(String refreshToken);
+
+    public Long extractIdFromRefreshToken(String refreshToken);
+
+    public Long extractIdFromAccessToken(String accessToken);
 }

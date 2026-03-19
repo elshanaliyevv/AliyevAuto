@@ -1,12 +1,14 @@
 package com.elshanaliyev.aliyevauto.service;
 
 import com.elshanaliyev.aliyevauto.model.response.TokensResponse;
+import com.elshanaliyev.aliyevauto.repository.UserRepo;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import jakarta.annotation.PostConstruct;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +16,7 @@ import javax.crypto.SecretKey;
 import java.util.Date;
 import java.util.function.Function;
 
+@RequiredArgsConstructor
 @Service
 public class JwtServiceImpl implements JwtService {
 
@@ -26,6 +29,8 @@ public class JwtServiceImpl implements JwtService {
     @Value("${security.jwt.refresh-expiration}")
     private long refreshExpiration;
 
+    private final UserRepo userRepo;
+
     private SecretKey signInKey;
 
     @PostConstruct
@@ -35,15 +40,18 @@ public class JwtServiceImpl implements JwtService {
 
     @Override
     public TokensResponse generateTokens(String username) {
-        String accessToken = generateToken(username, accessExpiration, "access");
-        String refreshToken = generateToken(username, refreshExpiration, "refresh");
+        Long id = userRepo.findByUsername(username)
+                .orElseThrow(() -> new RuntimeException("User tapilmadi"))
+                .getId();
+
+        String accessToken = generateToken(username, id, accessExpiration, "access");
+        String refreshToken = generateToken(username, id, refreshExpiration, "refresh");
 
         TokensResponse response = new TokensResponse();
         response.setAccessToken(accessToken);
         response.setRefreshToken(refreshToken);
         response.setAccessTokenExpries(accessExpiration);
         response.setRefreshTokenExpires(refreshExpiration);
-
         return response;
     }
 
@@ -55,6 +63,16 @@ public class JwtServiceImpl implements JwtService {
     @Override
     public String extractUsernameFromRefreshToken(String refreshToken) {
         return extractClaim(refreshToken, Claims::getSubject);
+    }
+
+    @Override
+    public Long extractIdFromAccessToken(String accessToken) {
+        return extractId(accessToken);
+    }
+
+    @Override
+    public Long extractIdFromRefreshToken(String refreshToken) {
+        return extractId(refreshToken);
     }
 
     @Override
@@ -77,12 +95,13 @@ public class JwtServiceImpl implements JwtService {
         return generateTokens(username);
     }
 
-    private String generateToken(String username, long expiration, String type) {
+    private String generateToken(String username, Long id, long expiration, String type) {
         Date now = new Date();
         Date expireAt = new Date(now.getTime() + expiration);
 
         return Jwts.builder()
                 .subject(username)
+                .claim("id", id)
                 .claim("type", type)
                 .issuedAt(now)
                 .expiration(expireAt)
@@ -111,5 +130,10 @@ public class JwtServiceImpl implements JwtService {
 
     private <T> T extractClaim(String token, Function<Claims, T> resolver) {
         return resolver.apply(extractAllClaims(token));
+    }
+    public Long extractId(String token) {
+        Claims claims = extractAllClaims(token);
+        Object id = claims.get("id");
+        return Long.valueOf(id.toString());
     }
 }

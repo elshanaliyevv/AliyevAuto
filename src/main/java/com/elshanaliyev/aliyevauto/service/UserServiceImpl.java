@@ -70,6 +70,7 @@ public class UserServiceImpl implements UserService {
     public void updateMyUsername(String username) {
         String currentUsername = SecurityContextHolder.getContext().getAuthentication().getName();
 
+
         User user = userRepo.findByUsername(currentUsername)
                 .orElseThrow(() -> new UserNotFoundException("User not found"));
 
