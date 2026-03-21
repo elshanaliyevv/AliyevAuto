@@ -26,8 +26,8 @@ public class ServiceCars {
     @JoinColumn(name = "engine_id")
     Engine engine;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "model_id")
-    Model model;
+    @JoinColumn(name = "brand_id")
+    Brand brand;
     @NotNull
     Long kilometers;
     @Column(name = "product_year")

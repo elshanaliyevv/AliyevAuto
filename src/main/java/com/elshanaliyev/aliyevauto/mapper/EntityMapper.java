@@ -4,7 +4,6 @@ import com.elshanaliyev.aliyevauto.model.entity.LastServiceTimes;
 import com.elshanaliyev.aliyevauto.model.entity.NewCar;
 import com.elshanaliyev.aliyevauto.model.entity.ServiceCars;
 import com.elshanaliyev.aliyevauto.model.entity.User;
-import com.elshanaliyev.aliyevauto.model.request.ServiceCarsRequest;
 import com.elshanaliyev.aliyevauto.model.response.LastServiceTimesResponse;
 import com.elshanaliyev.aliyevauto.model.response.NewCarResponse;
 import com.elshanaliyev.aliyevauto.model.response.ServiceCarsResponse;
@@ -38,7 +37,7 @@ public class EntityMapper {
         }
         return NewCarResponse.builder()
                 .Factory(newCar.getFactory())
-                .model(newCar.getModel().getName().toString())
+                .brand(newCar.getBrand().getName().toString())
                 .engine(newCar.getEngine().getEngineCode())
                 .trim(newCar.getTrim())
                 .color(newCar.getColor().getColorCode())
@@ -52,7 +51,7 @@ public class EntityMapper {
             return null;
         }
         return ServiceCarsResponse.builder()
-                .model(serviceCars.getModel().getName().toString())
+                .brand(serviceCars.getBrand().getName().toString())
                 .engine(serviceCars.getEngine().getEngineCode())
                 .kilometers(serviceCars.getKilometers())
                 .productYear(serviceCars.getProductYear())

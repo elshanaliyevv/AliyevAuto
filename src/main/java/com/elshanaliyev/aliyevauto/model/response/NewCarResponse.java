@@ -2,7 +2,6 @@ package com.elshanaliyev.aliyevauto.model.response;
 
 
 import com.elshanaliyev.aliyevauto.Enums.CarEnums.Trim;
-import com.elshanaliyev.aliyevauto.model.entity.Model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -20,7 +19,7 @@ public class NewCarResponse {
     @NotBlank
     String Factory;
     @NotBlank
-    String model;
+    String brand;
     @NotBlank
     String engine;
     @NotNull

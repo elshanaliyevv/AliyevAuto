@@ -6,5 +6,7 @@ import com.elshanaliyev.aliyevauto.model.response.NewCarResponse;
 public interface NewCarService {
     public void addCar(NewCarsRequest newCarsRequest);
     public void buyCar(NewCarResponse newCarResponse);
+    public void deleteCar(Long id);
+    public void updatePrice(Long id);
 
 }

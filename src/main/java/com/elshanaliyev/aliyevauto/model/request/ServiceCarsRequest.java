@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 @Builder
 public class ServiceCarsRequest {
     @NotBlank
-    String name;
+    String brand;
     @NotNull
     String engine;
     @NotNull

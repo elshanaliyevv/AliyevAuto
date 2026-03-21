@@ -19,10 +19,4 @@ public class Engine {
     @NotBlank
     @Column(name = "engine_code")
     String engineCode;
-    @OneToMany(mappedBy = "engine")
-    @Column(name = "new_cars")
-    List<NewCar> cars;
-    @OneToMany(mappedBy = "engine")
-    @Column(name = "service_cars")
-    List<ServiceCars> serviceCars;
 }

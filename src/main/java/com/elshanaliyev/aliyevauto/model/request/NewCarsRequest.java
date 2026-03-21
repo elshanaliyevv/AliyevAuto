@@ -11,8 +11,8 @@ public class NewCarsRequest {
     @NotBlank(message = "Zavod (Factory) qeyd olunmalıdır")
     String factory;
 
-    @NotNull(message = "Model seçilməlidir")
-    String model;
+    @NotNull(message = "Brand seçilməlidir")
+    String brand;
 
     @NotNull(message = "Mühərrik tipi seçilməlidir")
     String engine;

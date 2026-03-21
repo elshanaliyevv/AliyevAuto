@@ -37,8 +37,8 @@ public class NewCar {
     Engine engine;
     @NotBlank
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "model_id")
-    Model model;
+    @JoinColumn(name = "brand_id")
+    Brand brand;
     @NotNull
     BigDecimal price;
 }

@@ -1,5 +1,6 @@
 package com.elshanaliyev.aliyevauto.config;
 
+import com.elshanaliyev.aliyevauto.security.CurrentUserInfo;
 import com.elshanaliyev.aliyevauto.service.JwtService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -41,6 +42,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
         try {
             String username = jwtService.extractUsernameFromAccessToken(token);
+            Long id = jwtService.extractIdFromAccessToken(token);
 
             if (StringUtils.hasText(username)
                     && SecurityContextHolder.getContext().getAuthentication() == null
@@ -56,14 +58,13 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                                     userDetails.getAuthorities()
                             );
 
-                    authentication.setDetails(
-                            new WebAuthenticationDetailsSource().buildDetails(request)
-                    );
+                    authentication.setDetails(new CurrentUserInfo(id, username));
 
                     SecurityContextHolder.getContext().setAuthentication(authentication);
                 }
             }
         } catch (Exception e) {
+
             SecurityContextHolder.clearContext();
         }
 

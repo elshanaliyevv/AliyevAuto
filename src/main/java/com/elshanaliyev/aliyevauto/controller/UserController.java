@@ -61,7 +61,7 @@ public class UserController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("USer not found");
         }
     }
-    @PostMapping("/updateusername")
+    @PatchMapping("/updateusername")
     public ResponseEntity<?> updateUsername(@RequestParam String username) {
         try {
             userService.updateMyUsername(username);
@@ -71,7 +71,7 @@ public class UserController {
         }
     }
 
-    @PostMapping("/updatemail")
+    @PatchMapping("/updatemail")
     public ResponseEntity<?> updateMail(@RequestParam String mail) {
         try {
             userService.updateMyMail(mail);
@@ -81,7 +81,7 @@ public class UserController {
         }
     }
 
-    @PostMapping("/updatenumber")
+    @PatchMapping("/updatenumber")
     public ResponseEntity<?> updateNumber(@RequestParam String number) {
         try {
             userService.updateMyNumber(number);

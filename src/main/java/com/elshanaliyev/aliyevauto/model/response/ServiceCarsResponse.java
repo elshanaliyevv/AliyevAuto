@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class ServiceCarsResponse {
     @NotBlank
-    String model;
+    String brand;
     @NotBlank
     String engine;
     @NotNull

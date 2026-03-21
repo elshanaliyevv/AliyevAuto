@@ -7,9 +7,12 @@ import com.elshanaliyev.aliyevauto.mapper.EntityMapper;
 import com.elshanaliyev.aliyevauto.model.entity.User;
 import com.elshanaliyev.aliyevauto.model.response.UserResponse;
 import com.elshanaliyev.aliyevauto.repository.UserRepo;
+import com.elshanaliyev.aliyevauto.security.CurrentUserInfo;
+import com.elshanaliyev.aliyevauto.security.CustomUserDetails;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.experimental.FieldDefaults;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import java.util.Optional;
@@ -84,9 +87,9 @@ public class UserServiceImpl implements UserService {
         if (!number.matches(regex)){
             throw new WrongNumberForm("Please enter avaible number");
         }
-        String currentUsername = SecurityContextHolder.getContext().getAuthentication().getName();
+        Long currentUserId = getCurrentUserId();
 
-        User user = userRepo.findByUsername(currentUsername)
+        User user = userRepo.findById(currentUserId)
                 .orElseThrow(() -> new UserNotFoundException("User not found"));
 
         user.setNumber(number);
@@ -106,7 +109,15 @@ public class UserServiceImpl implements UserService {
 
 
     private String getCurrentUsername() {
-        return SecurityContextHolder.getContext().getAuthentication().getName();
+        return getCurrentUserInfo().getUsername();
+    }
+    private CurrentUserInfo getCurrentUserInfo() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        return (CurrentUserInfo) authentication.getDetails();
+    }
+
+    private Long getCurrentUserId() {
+        return getCurrentUserInfo().getId();
     }
 
 
