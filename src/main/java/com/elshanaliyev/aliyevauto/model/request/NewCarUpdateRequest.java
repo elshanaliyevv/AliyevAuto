@@ -1,33 +1,39 @@
-package com.elshanaliyev.aliyevauto.model.response;
-
+package com.elshanaliyev.aliyevauto.model.request;
 
 import com.elshanaliyev.aliyevauto.Enums.CarEnums.Trim;
-import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.experimental.FieldDefaults;
+import lombok.NoArgsConstructor;
+
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Data
-@FieldDefaults(level = AccessLevel.PRIVATE)
 @Builder
-public class NewCarResponse {
-    @NotBlank
+@NoArgsConstructor
+@AllArgsConstructor
+public class NewCarUpdateRequest {
+
+    @NotNull
     String brand;
-    @NotBlank
+
+    @NotNull
     String engine;
+
     @NotNull
     Trim trim;
+
     @NotNull
     String color;
+
     @NotNull
-    @Column(name = "product_year")
     LocalDateTime productYear;
+
     @NotNull
     BigDecimal price;
+
+    @NotNull
     Integer count;
 }

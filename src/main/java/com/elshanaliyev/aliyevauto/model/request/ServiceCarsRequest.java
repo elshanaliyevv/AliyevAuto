@@ -17,12 +17,12 @@ public class ServiceCarsRequest {
     String brand;
     @NotNull
     String engine;
+    @NotBlank
+    String color;
     @NotNull
     Integer kilometers;
     @NotNull
     LocalDateTime productYear;
-    @NotNull
+    /** İstəyə bağlı; hazırda entity-də ayrıca sahə yoxdur. */
     LocalDateTime purchasedYear;
-    @NotNull
-    Long userId;
 }

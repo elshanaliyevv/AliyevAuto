@@ -2,7 +2,6 @@ package com.elshanaliyev.aliyevauto.model.entity;
 
 import com.elshanaliyev.aliyevauto.Enums.CarEnums.Trim;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AccessLevel;
 import lombok.Data;
@@ -19,23 +18,23 @@ public class NewCar {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
-    @NotBlank
-    String Factory;
+    @NotNull
+    Integer count;
     @Enumerated(EnumType.STRING)
     @NotNull
     Trim trim;
     @NotNull
     @Column(name = "product_year")
     LocalDateTime productYear;
-    @NotBlank
+    @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "color_id")
     Color color;
-    @NotBlank
+    @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "engine_id")
     Engine engine;
-    @NotBlank
+    @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "brand_id")
     Brand brand;

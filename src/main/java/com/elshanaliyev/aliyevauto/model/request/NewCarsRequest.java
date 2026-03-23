@@ -1,15 +1,20 @@
 package com.elshanaliyev.aliyevauto.model.request;
 
 import com.elshanaliyev.aliyevauto.Enums.CarEnums.Trim;
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class NewCarsRequest {
-    @NotBlank(message = "Zavod (Factory) qeyd olunmalıdır")
-    String factory;
 
     @NotNull(message = "Brand seçilməlidir")
     String brand;

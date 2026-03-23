@@ -13,11 +13,7 @@ import lombok.experimental.FieldDefaults;
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class LastServiceTimeRequest {
-
+public class OdometerUpdateRequest {
     @NotNull
-    Integer odometerAtService;
-    boolean oilChange;
-    boolean airFilterChange;
-    boolean oilFilterChange;
+    Long kilometers;
 }

@@ -21,12 +21,6 @@ public class CustomUserDetailsService implements UserDetailsService {
                 .findByUsernameOrEmailOrNumber(identifier, identifier, identifier)
                 .orElseThrow(() -> new UsernameNotFoundException("User tapılmadı"));
 
-        String role = user.getRole() == null ? "USER" : user.getRole().name();
-
-        return org.springframework.security.core.userdetails.User
-                .withUsername(user.getUsername())
-                .password(user.getPassword())
-                .roles(role)
-                .build();
+        return new CustomUserDetails(user);
     }
 }
