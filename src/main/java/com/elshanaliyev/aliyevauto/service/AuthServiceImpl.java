@@ -80,6 +80,7 @@ public class AuthServiceImpl implements AuthService {
         userResponse.setUsername(user.getUsername());
         userResponse.setEmail(user.getEmail());
         userResponse.setNumber(user.getNumber());
+        userResponse.setRole(user.getRole().toString());
 
         AuthResponse authResponse = new AuthResponse();
         authResponse.setTokensResponse(tokens);

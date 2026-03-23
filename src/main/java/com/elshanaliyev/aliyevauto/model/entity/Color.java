@@ -20,11 +20,4 @@ public class Color {
     @NotBlank
     @Column(name = "color_code")
     String colorCode;
-    @OneToMany(mappedBy = "color")
-    @Column(name = "new_cars")
-    List<NewCar> cars;
-    @OneToMany(mappedBy = "color")
-    @Column(name = "service_cars")
-    List<ServiceCars> serviceCars;
-
 }

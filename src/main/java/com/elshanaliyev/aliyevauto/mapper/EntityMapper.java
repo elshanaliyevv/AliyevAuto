@@ -32,7 +32,7 @@ public class EntityMapper {
         if (user == null) {
             return null;
         }
-        return new UserResponse(user.getId(), user.getUsername(), user.getEmail(), user.getNumber());
+        return new UserResponse(user.getId(), user.getUsername(), user.getEmail(), user.getNumber(),user.getRole().toString());
     }
 
     public LastServiceTimesResponse lastServiceTimesToResponse(LastServiceTimes lastServiceTimes) {
