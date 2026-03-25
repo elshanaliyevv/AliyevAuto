@@ -1,6 +1,5 @@
 package com.elshanaliyev.aliyevauto.controller;
 
-
 import com.elshanaliyev.aliyevauto.Exceptions.UserCantDeleted;
 import com.elshanaliyev.aliyevauto.Exceptions.UserNotFoundException;
 import com.elshanaliyev.aliyevauto.Exceptions.WrongNumberForm;
@@ -18,11 +17,10 @@ public class UserController {
 
     private final UserServiceImpl userService;
 
-
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/id/{id}")
     public ResponseEntity<?> getuserbyid(@PathVariable Long id) {
-        try{
+        try {
             return ResponseEntity.ok(userService.getUserById(id));
         } catch (UserNotFoundException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Istiadeci tapilmadi");
@@ -48,10 +46,11 @@ public class UserController {
 
         } catch (UserNotFoundException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Istifadeci tapilmadi");
-        }catch (UserCantDeleted e){
+        } catch (UserCantDeleted e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("User cant be deleted");
         }
     }
+
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/name/{name}")
     public ResponseEntity<?> getuserbyName(@PathVariable String name) {
@@ -61,6 +60,7 @@ public class UserController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("USer not found");
         }
     }
+
     @PatchMapping("/updateusername")
     public ResponseEntity<?> updateUsername(@RequestParam String username) {
         try {
@@ -88,10 +88,9 @@ public class UserController {
             return ResponseEntity.ok("Number changed");
         } catch (UserNotFoundException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("USer not found");
-        }catch (WrongNumberForm e){
+        } catch (WrongNumberForm e) {
             return ResponseEntity.status(400).body("Please enter right number ");
         }
     }
-
 
 }

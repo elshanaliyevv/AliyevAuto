@@ -2,9 +2,7 @@ package com.elshanaliyev.aliyevauto.model.request;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import java.time.LocalDateTime;
@@ -12,6 +10,8 @@ import java.time.LocalDateTime;
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class ServiceCarsRequest {
     @NotBlank
     String brand;
@@ -23,6 +23,5 @@ public class ServiceCarsRequest {
     Integer kilometers;
     @NotNull
     LocalDateTime productYear;
-    /** İstəyə bağlı; hazırda entity-də ayrıca sahə yoxdur. */
     LocalDateTime purchasedYear;
 }

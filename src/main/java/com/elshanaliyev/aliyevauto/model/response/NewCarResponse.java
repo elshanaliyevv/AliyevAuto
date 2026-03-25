@@ -16,6 +16,7 @@ import java.time.LocalDateTime;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Builder
 public class NewCarResponse {
+    Long id;
     @NotBlank
     String brand;
     @NotBlank
