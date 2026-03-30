@@ -54,6 +54,7 @@ public class EntityMapper {
             return null;
         }
         return NewCarResponse.builder()
+                .id(newCar.getId())
                 .brand(newCar.getBrand().getName().toString())
                 .engine(newCar.getEngine().getEngineCode())
                 .trim(newCar.getTrim())
@@ -69,6 +70,7 @@ public class EntityMapper {
             return null;
         }
         return NewCarResponse.builder()
+                .id(newCar.getId())
                 .brand(newCar.getBrand().getName().toString())
                 .engine(newCar.getEngine().getEngineCode())
                 .trim(newCar.getTrim())
@@ -131,8 +133,10 @@ public class EntityMapper {
             return null;
         }
         return ServiceCarsResponse.builder()
+                .id(serviceCars.getId())
                 .brand(serviceCars.getBrand().getName().toString())
                 .engine(serviceCars.getEngine().getEngineCode())
+                .color(serviceCars.getColor() != null ? serviceCars.getColor().getColorCode() : null)
                 .kilometers(serviceCars.getKilometers())
                 .productYear(serviceCars.getProductYear())
                 .user_id(serviceCars.getUser().getId())

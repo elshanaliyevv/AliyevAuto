@@ -14,10 +14,13 @@ import java.time.LocalDateTime;
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class ServiceCarsResponse {
+    Long id;
     @NotBlank
     String brand;
     @NotBlank
     String engine;
+    @NotBlank
+    String color;
     @NotNull
     Long kilometers;
     LocalDateTime productYear;

@@ -21,5 +21,5 @@ public class ServiceStatusResponse {
     boolean airFilterDue;
     boolean oilFilterDue;
     String summary;
-    BigDecimal estimatedTotalForDueServices;
+    BigDecimal totalAmount;
 }

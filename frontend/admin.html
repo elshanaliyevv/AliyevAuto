@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="az">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Panel – AliyevAuto</title>
+  <meta name="description" content="AliyevAuto admin idarəetmə paneli." />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <a href="index.html" class="navbar-brand">🚘 AliyevAuto</a>
+    <ul class="navbar-links">
+      <li><a href="index.html" id="nav-home">Avtomobillər</a></li>
+      <li><a href="garage.html" class="active" id="nav-garage">Qarajım</a></li>
+      <li id="nav-profile-li"><a href="#" id="nav-profile" onclick="openProfileModal();return false;">Profil</a></li>
+      <li id="nav-admin-li"><a href="admin.html" id="nav-admin">Admin</a></li>
+      <li><a href="login.html" id="nav-login" style="display:none">Giriş</a></li>
+      <li><a href="register.html" id="nav-register" class="btn-nav" style="display:none">Qeydiyyat</a></li>
+      <li>
+        <a href="#" id="nav-logout" onclick="logout();return false;" style="color:var(--danger)!important">
+          Çıxış (<span id="nav-email"></span>)
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    <div class="page-header">
+      <h1>⚙️ Admin Paneli</h1>
+      <p>Marka, rəng, mühərrik və yeni avtomobilləri idarə edin.</p>
+    </div>
+
+    <!-- Tabs -->
+    <div class="tabs">
+      <button class="tab-btn active" id="tab-brands" onclick="switchTab('brands')">Markalar</button>
+      <button class="tab-btn" id="tab-colors" onclick="switchTab('colors')">Rənglər</button>
+      <button class="tab-btn" id="tab-engines" onclick="switchTab('engines')">Mühərriklər</button>
+      <button class="tab-btn" id="tab-newcars" onclick="switchTab('newcars')">Yeni Avtomobillər</button>
+      <button class="tab-btn" id="tab-users" onclick="switchTab('users')">İstifadəçilər</button>
+    </div>
+
+    <!-- ════ BRANDS ════ -->
+    <div id="content-brands" class="tab-content">
+      <div class="card" style="margin-bottom:1.5rem;">
+        <h3 style="margin-bottom:1rem;font-size:1rem;">Yeni Marka Əlavə Et</h3>
+        <div style="display:flex;gap:0.75rem;flex-wrap:wrap;">
+          <input id="new-brand" type="text" class="form-control" placeholder="Marka adı..." style="max-width:300px;" />
+          <button class="btn btn-primary" onclick="addBrand()">+ Əlavə et</button>
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Ad</th>
+              <th>Əməliyyat</th>
+            </tr>
+          </thead>
+          <tbody id="brands-tbody">
+            <tr>
+              <td colspan="3">
+                <div class="loading-wrap">
+                  <div class="spinner"></div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ════ COLORS ════ -->
+    <div id="content-colors" class="tab-content" style="display:none;">
+      <div class="card" style="margin-bottom:1.5rem;">
+        <h3 style="margin-bottom:1rem;font-size:1rem;">Yeni Rəng Əlavə Et</h3>
+        <div style="display:flex;gap:0.75rem;flex-wrap:wrap;">
+          <input id="new-color" type="text" class="form-control" placeholder="Rəng adı..." style="max-width:300px;" />
+          <button class="btn btn-primary" onclick="addColor()">+ Əlavə et</button>
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Ad</th>
+              <th>Əməliyyat</th>
+            </tr>
+          </thead>
+          <tbody id="colors-tbody">
+            <tr>
+              <td colspan="3">
+                <div class="loading-wrap">
+                  <div class="spinner"></div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ════ ENGINES ════ -->
+    <div id="content-engines" class="tab-content" style="display:none;">
+      <div class="card" style="margin-bottom:1.5rem;">
+        <h3 style="margin-bottom:1rem;font-size:1rem;">Yeni Mühərrik Əlavə Et</h3>
+        <div style="display:flex;gap:0.75rem;flex-wrap:wrap;">
+          <input id="new-engine" type="text" class="form-control" placeholder="Mühərrik adı..."
+            style="max-width:300px;" />
+          <button class="btn btn-primary" onclick="addEngine()">+ Əlavə et</button>
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Ad</th>
+              <th>Əməliyyat</th>
+            </tr>
+          </thead>
+          <tbody id="engines-tbody">
+            <tr>
+              <td colspan="3">
+                <div class="loading-wrap">
+                  <div class="spinner"></div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ════ NEW CARS ════ -->
+    <div id="content-newcars" class="tab-content" style="display:none;">
+      <div class="card" style="margin-bottom:1.5rem;">
+        <h3 style="margin-bottom:1.2rem;font-size:1rem;">Yeni Avtomobil Əlavə Et</h3>
+        <form id="new-car-form" onsubmit="(e=>e.preventDefault())(event)"
+          style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem;">
+          <div class="form-group" style="margin:0">
+            <label class="form-label" for="nc-brand">Marka</label>
+            <input id="nc-brand" type="text" class="form-control" placeholder="BMW" />
+          </div>
+          <div class="form-group" style="margin:0">
+            <label class="form-label" for="nc-engine">Mühərrik</label>
+            <input id="nc-engine" type="text" class="form-control" placeholder="3.0 TDI" />
+          </div>
+          <div class="form-group" style="margin:0">
+            <label class="form-label" for="nc-color">Rəng</label>
+            <input id="nc-color" type="text" class="form-control" placeholder="Qara" />
+          </div>
+          <div class="form-group" style="margin:0">
+            <label class="form-label" for="nc-trim">Trim</label>
+            <select id="nc-trim" class="form-control">
+              <option value="">Seçin</option>
+              <option value="FULL">FULL</option>
+              <option value="NORMAL">NORMAL</option>
+              <option value="EMPTY">EMPTY</option>
+            </select>
+          </div>
+          <div class="form-group" style="margin:0">
+            <label class="form-label" for="nc-price">Qiymət ($)</label>
+            <input id="nc-price" type="number" class="form-control" placeholder="35000" />
+          </div>
+          <div class="form-group" style="margin:0">
+            <label class="form-label" for="nc-count">Say</label>
+            <input id="nc-count" type="number" class="form-control" placeholder="1" min="1" />
+          </div>
+          <div class="form-group" style="margin:0">
+            <label class="form-label" for="nc-year">İstehsal tarixi</label>
+            <input id="nc-year" type="date" class="form-control" />
+          </div>
+          <div style="display:flex;align-items:flex-end;">
+            <button class="btn btn-primary btn-full" onclick="addNewCar()">+ Əlavə et</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Marka</th>
+              <th>Mühərrik</th>
+              <th>Rəng</th>
+              <th>Trim</th>
+              <th>Qiymət</th>
+              <th>Say</th>
+              <th>Əməliyyat</th>
+            </tr>
+          </thead>
+          <tbody id="newcars-tbody">
+            <tr>
+              <td colspan="7">
+                <div class="loading-wrap">
+                  <div class="spinner"></div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    
+    <!-- ════ USERS ════ -->
+    <div id="content-users" class="tab-content" style="display:none;">
+      <div class="card" style="margin-bottom:1.5rem;">
+        <h3 style="margin-bottom:1rem;font-size:1rem;">İstifadəçi Sil</h3>
+        <p style="margin-bottom:1rem;color:var(--text-muted);font-size:0.9rem;">İstifadəçini silmək üçün User ID-ni daxil edin.</p>
+        <div style="display:flex;gap:0.75rem;flex-wrap:wrap;">
+          <input id="delete-user-id" type="number" class="form-control" placeholder="User ID daxil edin" style="max-width:300px;" />
+          <button class="btn btn-danger" onclick="deleteUserById()">Sil</button>
+        </div>
+      </div>
+    </div>
+    
+  </div><!-- /container -->
+  <!-- Profile Modal -->
+  <div class="modal-backdrop" id="profile-modal">
+    <div class="modal">
+      <div class="modal-header">
+        <h3>👤 Hesab Məlumatları</h3>
+        <button class="modal-close" onclick="closeProfileModal()">×</button>
+      </div>
+      <div id="profile-content">
+        <div class="form-group">
+          <label class="form-label">İstifadəçi adı</label>
+          <div style="display:flex;gap:0.5rem;">
+            <input id="p-username" type="text" class="form-control" />
+            <button class="btn btn-outline btn-sm" onclick="saveUsername()">Dəyiş</button>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Email</label>
+          <div style="display:flex;gap:0.5rem;">
+            <input id="p-email" type="email" class="form-control" />
+            <button class="btn btn-outline btn-sm" onclick="saveEmail()">Dəyiş</button>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Telefon</label>
+          <div style="display:flex;gap:0.5rem;">
+            <input id="p-number" type="text" class="form-control" placeholder="+994XXXXXXXXX" />
+            <button class="btn btn-outline btn-sm" onclick="saveNumber()">Dəyiş</button>
+          </div>
+          <small style="color:var(--text-muted); font-size:0.75rem;">Format: +994XXXXXXXXX və ya 0XXXXXXXXX</small>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Edit New Car Modal -->
+  <div class="modal-backdrop" id="edit-newcar-modal">
+    <div class="modal">
+      <div class="modal-header">
+        <h3>✏️ Avtomobili Redaktə Et</h3>
+        <button class="modal-close" onclick="closeEditNewCarModal()">×</button>
+      </div>
+      <form id="edit-new-car-form" onsubmit="event.preventDefault()">
+        <div class="form-group">
+          <label class="form-label" for="e-nc-brand">Marka</label>
+          <input id="e-nc-brand" type="text" class="form-control" required />
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="e-nc-engine">Mühərrik</label>
+          <input id="e-nc-engine" type="text" class="form-control" required />
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="e-nc-color">Rəng</label>
+          <input id="e-nc-color" type="text" class="form-control" required />
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="e-nc-trim">Trim</label>
+          <select id="e-nc-trim" class="form-control" required>
+            <option value="FULL">FULL</option>
+            <option value="NORMAL">NORMAL</option>
+            <option value="EMPTY">EMPTY</option>
+          </select>
+        </div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+          <div class="form-group">
+            <label class="form-label" for="e-nc-price">Qiymət ($)</label>
+            <input id="e-nc-price" type="number" class="form-control" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="e-nc-count">Say</label>
+            <input id="e-nc-count" type="number" class="form-control" min="1" required />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="e-nc-year">İstehsal tarixi</label>
+          <input id="e-nc-year" type="date" class="form-control" required />
+        </div>
+        <button class="btn btn-primary btn-full" id="edit-nc-btn" onclick="saveNewCarEdit()">Yadda Saxla</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,23 @@
+{
+  "name": "aliyevauto-frontend",
+  "version": "1.0.0",
+  "description": "Premium car sales and garage management platform frontend",
+  "main": "index.js",
+  "scripts": {
+    "start": "npx live-server --port=3000",
+    "dev": "npx live-server --port=3000"
+  },
+  "keywords": [
+    "car",
+    "garage",
+    "management"
+  ],
+  "author": "AliyevAuto",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.6.0"
+  },
+  "devDependencies": {
+    "live-server": "^1.2.2"
+  }
+}

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AliyevAuto – Premium Avtomobil Platforması</title>
+  <meta name="description" content="AliyevAuto ilə yeni avtomobil alın, öz qarajınızı idarə edin."/>
+  <link rel="stylesheet" href="css/style.css"/>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <a href="index.html" class="navbar-brand">🚘 AliyevAuto</a>
+    <ul class="navbar-links">
+      <li><a href="index.html" class="active" id="nav-home">Avtomobillər</a></li>
+      <li id="nav-garage-li"><a href="garage.html" id="nav-garage">Qarajım</a></li>
+      <li id="nav-profile-li"><a href="#" id="nav-profile" onclick="openProfileModal();return false;">Profil</a></li>
+      <li id="nav-admin-li"><a href="admin.html" id="nav-admin">Admin</a></li>
+      <li><a href="login.html" id="nav-login">Giriş</a></li>
+      <li><a href="register.html" id="nav-register" class="btn-nav">Qeydiyyat</a></li>
+      <li>
+        <a href="#" id="nav-logout" style="display:none;color:var(--danger)!important"
+           onclick="logout();return false;">Çıxış (<span id="nav-email"></span>)</a>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <h1>Arzunuzdakı Avtomobili<br/>Tapın</h1>
+      <p>Premium avtomobil seçimi, asan alış-veriş və fərdi qaraj idarəçiliyi — hamısı bir yerdə.</p>
+      <div style="display:flex;justify-content:center;gap:1rem;flex-wrap:wrap;">
+        <a href="register.html" class="btn btn-primary" id="hero-register">Başlayın →</a>
+        <a href="#cars-section" class="btn btn-outline">Avtomobillərə bax</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats bar -->
+  <div style="background:rgba(255,255,255,0.03);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:1.2rem 0;margin-bottom:1rem;">
+    <div class="container">
+      <div style="display:flex;justify-content:space-around;flex-wrap:wrap;gap:1rem;text-align:center;">
+        <div>
+          <div style="font-size:1.6rem;font-weight:800;color:var(--accent-light)">500+</div>
+          <div style="font-size:0.8rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.05em">Avtomobil</div>
+        </div>
+        <div>
+          <div style="font-size:1.6rem;font-weight:800;color:var(--accent-light)">4</div>
+          <div style="font-size:0.8rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.05em">Marka</div>
+        </div>
+        <div>
+          <div style="font-size:1.6rem;font-weight:800;color:var(--accent-light)">24/7</div>
+          <div style="font-size:0.8rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.05em">Dəstək</div>
+        </div>
+        <div>
+          <div style="font-size:1.6rem;font-weight:800;color:var(--accent-light)">100%</div>
+          <div style="font-size:0.8rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.05em">Etibarlı</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Car List -->
+  <section class="section" id="cars-section">
+    <div class="container">
+      <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:1.5rem;">
+        <div>
+          <h2 class="section-title">Yeni Avtomobillər</h2>
+          <p class="section-subtitle">Mövcud avtomobil ehtiyatından seçin</p>
+        </div>
+        <div style="position:relative;">
+          <input id="search-input" type="text" class="form-control"
+                 placeholder="🔍  Axtarın..." style="width:260px;padding-left:1rem;"/>
+        </div>
+      </div>
+      <div class="card-grid" id="cars-grid">
+        <div class="loading-wrap" style="grid-column:1/-1">
+          <div class="spinner"></div><p>Yüklənir...</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer style="border-top:1px solid var(--border);padding:2rem 0;text-align:center;color:var(--text-muted);font-size:0.8rem;margin-top:3rem;">
+    © 2024 AliyevAuto. Bütün hüquqlar qorunur.
+  </footer>
+
+  <!-- Profile Modal -->
+  <div class="modal-backdrop" id="profile-modal">
+    <div class="modal">
+      <div class="modal-header">
+        <h3>👤 Hesab Məlumatları</h3>
+        <button class="modal-close" onclick="closeProfileModal()">×</button>
+      </div>
+      <div id="profile-content">
+        <div class="form-group">
+          <label class="form-label">İstifadəçi adı</label>
+          <div style="display:flex;gap:0.5rem;">
+            <input id="p-username" type="text" class="form-control" />
+            <button class="btn btn-outline btn-sm" onclick="saveUsername()">Dəyiş</button>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Email</label>
+          <div style="display:flex;gap:0.5rem;">
+            <input id="p-email" type="email" class="form-control" />
+            <button class="btn btn-outline btn-sm" onclick="saveEmail()">Dəyiş</button>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Telefon</label>
+          <div style="display:flex;gap:0.5rem;">
+            <input id="p-number" type="text" class="form-control" placeholder="+994XXXXXXXXX" />
+            <button class="btn btn-outline btn-sm" onclick="saveNumber()">Dəyiş</button>
+          </div>
+          <small style="color:var(--text-muted); font-size:0.75rem;">Format: +994XXXXXXXXX və ya 0XXXXXXXXX</small>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/new-cars.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      updateNavbar();
+      if (typeof loadNewCars === 'function') loadNewCars();
+      // Hide hero register button if logged in
+      if (isLoggedIn()) {
+        const btn = document.getElementById('hero-register');
+        if (btn) { btn.href = 'garage.html'; btn.textContent = 'Qarajıma get →'; }
+      }
+    });
+  </script>
+</body>
+</html>

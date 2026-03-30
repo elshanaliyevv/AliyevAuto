@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Giriş – AliyevAuto</title>
+  <meta name="description" content="AliyevAuto platformasına daxil olun. Avtomobilinizi idarə edin."/>
+  <link rel="stylesheet" href="css/style.css"/>
+</head>
+<body class="auth-page">
+  <div class="auth-box">
+    <div class="auth-logo">
+      <div class="brand">AliyevAuto</div>
+      <p>Hesabınıza daxil olun</p>
+    </div>
+
+    <div id="login-alert" class="alert alert-danger"></div>
+
+    <form id="login-form" onsubmit="handleLogin(event)" novalidate>
+      <div class="form-group">
+        <label class="form-label" for="email">E-poçt</label>
+        <input id="email" type="email" class="form-control"
+               placeholder="sizin@email.com" required autocomplete="email"/>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="password">Şifrə</label>
+        <input id="password" type="password" class="form-control"
+               placeholder="••••••••" required autocomplete="current-password"/>
+      </div>
+      <button id="login-btn" type="submit" class="btn btn-primary btn-full">
+        Daxil ol
+      </button>
+    </form>
+
+    <div class="auth-footer">
+      Hesabınız yoxdur? <a href="register.html">Qeydiyyatdan keçin</a>
+    </div>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script>
+    // Redirect if already logged in
+    if (isLoggedIn()) window.location.href = 'index.html';
+  </script>
+</body>
+</html>

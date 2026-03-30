@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: AliyevAuto
+  datasource:
+    url: jdbc:postgresql://localhost:8080/aliyev_auto
+    username: postgres
+    password: postgres
+  jpa:
+    hibernate:
+      ddl-auto: update
+server:
+  port: 9090

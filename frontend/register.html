@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Qeydiyyat – AliyevAuto</title>
+  <meta name="description" content="AliyevAuto platformasında qeydiyyatdan keçin."/>
+  <link rel="stylesheet" href="css/style.css"/>
+</head>
+<body class="auth-page">
+  <div class="auth-box">
+    <div class="auth-logo">
+      <div class="brand">AliyevAuto</div>
+      <p>Yeni hesab yaradın</p>
+    </div>
+
+    <div id="register-alert" class="alert alert-danger"></div>
+
+    <form id="register-form" onsubmit="handleRegister(event)" novalidate>
+      <div class="form-group">
+        <label class="form-label" for="username">Ad Soyad</label>
+        <input id="username" type="text" class="form-control"
+               placeholder="Ad Soyad" required autocomplete="name"/>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="email">E-poçt</label>
+        <input id="email" type="email" class="form-control"
+               placeholder="sizin@email.com" required autocomplete="email"/>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="number">Telefon nömrəsi</label>
+        <input id="number" type="tel" class="form-control"
+               placeholder="+994501234567" required/>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="password">Şifrə</label>
+        <input id="password" type="password" class="form-control"
+               placeholder="••••••••" required autocomplete="new-password"/>
+      </div>
+      <button id="register-btn" type="submit" class="btn btn-primary btn-full">
+        Qeydiyyatdan keç
+      </button>
+    </form>
+
+    <div class="auth-footer">
+      Artıq hesabınız var? <a href="login.html">Daxil olun</a>
+    </div>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script>
+    if (isLoggedIn()) window.location.href = 'index.html';
+  </script>
+</body>
+</html>

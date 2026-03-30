@@ -135,7 +135,7 @@ public class ServiceCarsService {
                 .airFilterDue(airDue)
                 .oilFilterDue(oilFilterDue)
                 .summary(summary)
-                .estimatedTotalForDueServices(estimated)
+                .totalAmount(estimated)
                 .build();
     }
 
