@@ -16,10 +16,13 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String identifier) throws UsernameNotFoundException {
-
         User user = userRepo
                 .findByUsernameOrEmailOrNumber(identifier, identifier, identifier)
                 .orElseThrow(() -> new UsernameNotFoundException("User tapılmadı"));
+
+        if (user.getIsActive() != null && !user.getIsActive()) {
+            throw new UsernameNotFoundException("Istifadeci hesabi bloklanib (silinib)");
+        }
 
         return new CustomUserDetails(user);
     }

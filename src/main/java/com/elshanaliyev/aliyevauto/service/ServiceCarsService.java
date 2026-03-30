@@ -136,6 +136,7 @@ public class ServiceCarsService {
                 .oilFilterDue(oilFilterDue)
                 .summary(summary)
                 .totalAmount(estimated)
+                .accumulatedDebt(times.getTotalAmount() != null ? times.getTotalAmount() : BigDecimal.ZERO)
                 .build();
     }
 

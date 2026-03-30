@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15-alpine
+    container_name: aliyevauto-db
+    environment:
+      POSTGRES_DB: aliyev_auto
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "8080:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  backend:
+    build: .
+    container_name: aliyevauto-backend
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/aliyev_auto
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=postgres
+    ports:
+      - "9090:9090"
+    depends_on:
+      - db
+    restart: always
+
+  frontend:
+    image: nginx:alpine
+    container_name: aliyevauto-frontend
+    ports:
+      - "3000:80"
+    volumes:
+      - ./frontend:/usr/share/nginx/html:ro
+
+volumes:
+  postgres_data:

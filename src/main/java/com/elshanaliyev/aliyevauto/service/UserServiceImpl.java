@@ -1,6 +1,5 @@
 package com.elshanaliyev.aliyevauto.service;
 
-import com.elshanaliyev.aliyevauto.Exceptions.UserCantDeleted;
 import com.elshanaliyev.aliyevauto.Exceptions.UserNotFoundException;
 import com.elshanaliyev.aliyevauto.Exceptions.WrongNumberForm;
 import com.elshanaliyev.aliyevauto.mapper.EntityMapper;
@@ -51,11 +50,9 @@ public class UserServiceImpl implements UserService {
         if (userOptional.isEmpty()){
             throw new UserNotFoundException("User not found");
         }
-        userRepo.deleteUserById(id);
-        Optional<User> userOptional1 = userRepo.findById(id);
-        if (userOptional1.isPresent()){
-            throw new UserCantDeleted("User cant be deleted");
-        }
+        User user = userOptional.get();
+        user.setIsActive(false);
+        userRepo.save(user);
 
     }
 

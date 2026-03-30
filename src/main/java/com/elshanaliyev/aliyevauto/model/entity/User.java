@@ -40,4 +40,8 @@ public class User {
     Roles role;
     @OneToMany(mappedBy = "user")
     List<ServiceCars> cars;
+    
+    @Column(name = "is_active")
+    @Builder.Default
+    Boolean isActive = true;
 }

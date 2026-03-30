@@ -22,4 +22,5 @@ public class ServiceStatusResponse {
     boolean oilFilterDue;
     String summary;
     BigDecimal totalAmount;
+    BigDecimal accumulatedDebt;
 }

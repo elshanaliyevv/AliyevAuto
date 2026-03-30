@@ -213,6 +213,7 @@ async function showServiceModal(carId) {
                 <p id="s-summary" style="font-weight:600; color:var(--primary); font-size:0.9rem;"></p>
                 <p id="s-current-km" style="font-size:0.8rem; color:var(--text-muted); margin-top:0.3rem;"></p>
                 <p id="s-total-amount" style="font-size:0.8rem; color:var(--text-secondary); margin-top:0.3rem; font-weight:bold;"></p>
+                <p id="s-accumulated-debt" style="font-size:0.8rem; color:var(--danger); margin-top:0.3rem; font-weight:bold;"></p>
             </div>
             
             <div style="background:var(--bg-secondary); padding:1.2rem; border-radius:12px; margin-bottom:1.5rem;">
@@ -266,6 +267,9 @@ async function showServiceModal(carId) {
     document.getElementById('s-current-km').textContent = `Hazırkı yürüş: ${status.currentKilometers} km`;
     if (document.getElementById('s-total-amount')) {
       document.getElementById('s-total-amount').textContent = `Təxmini xərc: ${status.totalAmount || 0} AZN`;
+    }
+    if (document.getElementById('s-accumulated-debt')) {
+      document.getElementById('s-accumulated-debt').textContent = `Ümumi Servis Borcu (Baza): ${status.accumulatedDebt || 0} AZN`;
     }
     document.getElementById('s-odo').value = status.currentKilometers;
 
