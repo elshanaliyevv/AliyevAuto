@@ -2,7 +2,9 @@
 // api.js – Base fetch wrapper with JWT support
 // ================================================
 
-const BASE_URL = 'http://localhost:9090';
+const BASE_URL = window.location.hostname === "localhost"
+    ? "http://localhost:9090"
+    : "https://aliyevauto.onrender.com";
 
 /**
  * Main API request function.
