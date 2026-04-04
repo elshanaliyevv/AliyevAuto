@@ -8,6 +8,7 @@ import com.elshanaliyev.aliyevauto.model.response.TokensResponse;
 import com.elshanaliyev.aliyevauto.model.response.UserResponse;
 import com.elshanaliyev.aliyevauto.model.entity.User;
 import com.elshanaliyev.aliyevauto.repository.UserRepo;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
