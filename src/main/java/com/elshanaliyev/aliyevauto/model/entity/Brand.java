@@ -1,6 +1,5 @@
 package com.elshanaliyev.aliyevauto.model.entity;
 
-import com.elshanaliyev.aliyevauto.Enums.CarEnums.Models;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
